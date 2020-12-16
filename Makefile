@@ -81,13 +81,13 @@ LINKFLAGS_eagle.app.v6 = \
 	-lupgrade\
 	-ldriver \
 	-lhal					\
+	-lpwm	\
 	$(DEP_LIBS_eagle.app.v6)					\
 	-Wl,--end-group
 
 #	-lmbedtls	\
 #	-ljson	\
 #	-lsmartconfig \
-#	-lpwm	\
 	
 DEPENDS_eagle.app.v6 = \
                 $(LD_FILE) \

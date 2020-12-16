@@ -7,6 +7,7 @@
 #include "debug.h"
 #include "mdns.h"
 #include "status.h"
+#include "servo.h"
 
 // SDK
 #include <ets_sys.h>
@@ -72,6 +73,8 @@ void user_init(void) {
     wifi_start(&params, wifi_connect_cb);
 
     webadmin_start(&params);
+    
+    servo_init();
 }
 
 

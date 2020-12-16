@@ -50,6 +50,15 @@ static ETSTimer ff;
 
 
 static ICACHE_FLASH_ATTR
+void servo_move(Request *req, char *body, uint32_t body_length, 
+        uint32_t more) {
+   uint32_t angle = atoi(body);
+   servo_angle(SERVO1, angle);
+   httpresponse_text(req, HTTPSTATUS_OK, NULL, NULL);
+}
+
+
+static ICACHE_FLASH_ATTR
 void fota_reboot(Request *req, char *body, uint32_t body_length, 
         uint32_t more) {
     char buffer[256];
@@ -98,6 +107,8 @@ void webadmin_index(Request *req, char *body, uint32_t body_length,
 
 
 static HttpRoute routes[] = {
+    {"ROTATE",    "/",            servo_move         },
+    {"FOTA",      "/",            fota_reboot        },
     {"OPTIONS",   "/",            webadmin_options   },
     {"GET",       "/",            webadmin_index     },
     {"GET",       "/favicon.ico", webadmin_favicon   },
